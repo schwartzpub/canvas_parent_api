@@ -6,10 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "canvas_parent_api"
 version = "0.0.1"
 authors = [
-    {
-        name = "Jacob Schwartz",
-        email = "jake@schwartzpub.com"
-    },
+    {name = "Jacob Schwartz",email = "jake@schwartzpub.com"},
 ]
 description = "A small API wrapper for Canvas Parents."
 readme = "README.md"
