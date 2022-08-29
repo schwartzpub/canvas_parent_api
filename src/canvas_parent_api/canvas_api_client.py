@@ -1,6 +1,5 @@
 import json
 import logging
-from turtle import st
 import aiohttp
 
 from urllib.parse import urljoin
@@ -96,26 +95,28 @@ class CanvasApiClient(object):
         self._api_key = api_key
         self._headers = {"accept": "application/json","Authorization": f"Bearer {self._api_key}"}
 
-        async def _get_request(self, end_url: str, query_filters: list[str] = None):
-            request_url = urljoin(self._base_url,end_url)
-            params = None
-            async with aiohttp.ClientSession() as session:
-                async with session.get("{}".format(request_url), headers=self._headers) as studentresp:
-                    response = await studentresp.json()
-                    if response.status_code >= 400:
-                        return response                   
+    async def _get_request(self, end_url: str, query_filters: list[str] = None):
+        request_url = urljoin(self._base_url,end_url)
+        params = None
+        async with aiohttp.ClientSession() as session:
+            async with session.get("{}".format(request_url), headers=self._headers) as studentresp:
+                response = studentresp
+                response_json = await studentresp.json()
+                if response.status >= 400:
                     return response
+                return response_json
 
-        def get_observees(self) -> list[ObserveeResponse]:
-            """Get Canvas Observees (students)."""
-            parsed_response = self._get_request("self/observees")
-            if parsed_response:
-                return [ObserveeResponse(**response) for response in parsed_response]
-            return []
+    async def get_observees(self) -> list[ObserveeResponse]:
+        """Get Canvas Observees (students)."""
+        parsed_response = await self._get_request("self/observees")
+        parsed_json = json.loads(parsed_response)
+        if parsed_response:
+            return ObserveeResponse(**parsed_json)
+        return []
 
-        def get_courses(self, student_id: int) -> list[CourseResponse]:
-            """Get Canvas Courses."""
-            parsed_response = self._get_request(f"{student_id}/courses?include[]=term")
-            if parsed_response:
-                return [CourseResponse(**response) for response in parsed_response]
-            return []
+    def get_courses(self, student_id: int) -> list[CourseResponse]:
+        """Get Canvas Courses."""
+        parsed_response = self._get_request(f"{student_id}/courses?include[]=term")
+        if parsed_response:
+            return [CourseResponse(**response) for response in parsed_response]
+        return []

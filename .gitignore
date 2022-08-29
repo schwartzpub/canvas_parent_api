@@ -1,1 +1,4 @@
 canvas_parent_api.code-workspace
+venv/
+canvas_parent_api.egg-info/
+src/canvas_parent_api/__pycache__/

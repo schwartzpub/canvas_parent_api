@@ -1,2 +1,4 @@
 """The Canvas Parent API module"""
-name = "canvas-parent-api"
+from .canvas import Canvas
+
+name = "canvas_parent_api"
