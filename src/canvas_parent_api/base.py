@@ -1,12 +1,10 @@
 import json
 
-
 def get_val(obj):
     if hasattr(obj, "as_dict"):
         as_attr = getattr(obj, "as_dict")
         return as_attr()
     return obj
-
 
 class DataModel(object):
     def toJson(self):
