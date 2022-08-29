@@ -14,6 +14,17 @@ To install the module use:
 python3 -m pip install canvas-parent-api
 ```
 
+### Get API Token
+If you are a parent, you will have a Canvas Parent account.  To get an API token, you must sign into the Canvas Parent application from a web browser.  This is typically using: https://<yourdistrict>.instructure.com/login/canvas
+
+Once you have signed into your account, navigate to Account > Settings.
+
+Under "Approved Integrations" click "+ New Access Token" to create a new API Token.
+
+Enter a Purpose and Expiration date (blank for no expiration).
+
+Be sure to save your API token, as you will have to generate a new token if this is lost.
+
 ### Usage
 Example usage to get students, printing names:
 ```python
