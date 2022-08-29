@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "canvas_parent_api"
-version = "0.0.10"
+version = "0.0.17"
 authors = [
     {name = "Jacob Schwartz",email = "jake@schwartzpub.com"},
 ]
@@ -16,6 +16,10 @@ classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
+]
+dependencies = [
+    "aiohttp",
+    "pydantic>=1.8.2,<1.10.0"
 ]
 
 [project.urls]
