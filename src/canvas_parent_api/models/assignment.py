@@ -117,27 +117,27 @@ class Assignment(DataModel):
     @property
     def unlock_at(self) -> str:
         """Property Definition."""
-        return self._id
+        return self._unlock_at
 
     @property
     def has_overrides(self) -> bool:
         """Property Definition."""
-        return self._id
+        return self._has_overrides
 
     @property
     def all_dates(self) -> list:
         """Property Definition."""
-        return self._id
+        return self._all_dates
 
     @property
     def course_id(self) -> int:
         """Property Definition."""
-        return self._id
+        return self._course_id
 
     @property
     def html_url(self) -> str:
         """Property Definition."""
-        return self._id
+        return self._html_url
 
     @property
     def submission_download_url(self) -> str:
