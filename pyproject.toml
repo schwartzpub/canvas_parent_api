@@ -4,11 +4,11 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "canvas_parent_api"
-version = "0.0.17"
+version = "0.0.2"
 authors = [
     {name = "Jacob Schwartz",email = "jake@schwartzpub.com"},
 ]
-description = "A small API wrapper for Canvas Parents."
+description = "A small async API wrapper for Canvas Parents."
 readme = "README.md"
 license = { file = "LICENSE" }
 requires-python = ">=3.9"

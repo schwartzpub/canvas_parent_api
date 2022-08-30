@@ -31,7 +31,7 @@ class CanvasApiClient():
         else:
             self._base_url = f"{base_url}/api/v1/"
 
-        _LOGGER.info(f"generated base url: {self._base_url}")
+        _LOGGER.debug(f"generated base url: {self._base_url}")
 
         self._api_key = api_key
         self._headers = {"accept": "application/json","Authorization": f"Bearer {self._api_key}"}

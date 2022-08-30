@@ -9,7 +9,7 @@ class ObserveeResponse(BaseModel):
     created_at: str
     sortable_name: str
     short_name: str
-    observation_link_root_account: Optional[list[int]] = None
+    observation_link_root_account: Optional[list[int]]
 
 class CourseResponse(BaseModel):
     """Course Response Definition."""
@@ -128,7 +128,7 @@ class AssignmentResponse(BaseModel):
     moderated_grading: bool
     grader_count: int
     final_grader_id: Optional[int] = Field(...)
-    grader_comments_visisble_to_graders: Optional[bool]
+    grader_comments_visible_to_graders: Optional[bool]
     graders_anonymous_to_graders: Optional[bool]
     grader_names_visible_to_final_grader: Optional[bool]
     anonymous_grading: bool
