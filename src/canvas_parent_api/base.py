@@ -1,5 +1,9 @@
-"""Canvas Base Methods."""
+"""Canvas Base Methods.
+
+Borrowed from pygrocy (https://github.com/SebRut/pygrocy)
+"""
 import json
+
 
 def get_val(obj):
     """Get Value."""
@@ -7,6 +11,7 @@ def get_val(obj):
         as_attr = getattr(obj, "as_dict")
         return as_attr()
     return obj
+
 
 class DataModel():
     """Define DataModel."""

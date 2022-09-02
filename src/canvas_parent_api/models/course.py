@@ -2,6 +2,7 @@
 from canvas_parent_api.base import DataModel
 from canvas_parent_api.canvas_api_client import CourseResponse
 
+
 class Course(DataModel):
     """Define Course Model."""
     def __init__(self, course_resp: CourseResponse):
@@ -48,13 +49,15 @@ class Course(DataModel):
         self._allow_student_forum_attachments = course_resp.allow_student_forum_attachments
         self._open_enrollment = course_resp.open_enrollment
         self._self_enrollment = course_resp.self_enrollment
-        self._restrict_enrollments_to_course_dates = course_resp.restrict_enrollments_to_course_dates # pylint disable=line-too-long
+        self._restrict_enrollments_to_course_dates = \
+            course_resp.restrict_enrollments_to_course_dates
         self._course_format = course_resp.course_format
         self._access_restricted_by_date = course_resp.access_restricted_by_date
         self._time_zone = course_resp.time_zone
         self._blueprint = course_resp.blueprint
         self._blueprint_restrictions = course_resp.blueprint_restrictions
-        self._blueprint_restrictions_by_object_type = course_resp.blueprint_restrictions_by_object_type # pylint diable=line-too-long
+        self._blueprint_restrictions_by_object_type = \
+            course_resp.blueprint_restrictions_by_object_type
         self._template = course_resp.template
 
     @property
@@ -198,7 +201,7 @@ class Course(DataModel):
         return self._apply_assignment_group_weights
 
     @property
-    def permissions(self) -> dict[any,any]:
+    def permissions(self) -> dict[any, any]:
         """Property Definition."""
         return self._permissions
 
@@ -298,12 +301,12 @@ class Course(DataModel):
         return self._blueprint
 
     @property
-    def blueprint_restrictions(self) -> dict[any,any]:
+    def blueprint_restrictions(self) -> dict[any, any]:
         """Property Definition."""
         return self._blueprint_restrictions
 
     @property
-    def blueprint_restrictions_by_object_type(self) -> dict[any,any]:
+    def blueprint_restrictions_by_object_type(self) -> dict[any, any]:
         """Property Definition."""
         return self._blueprint_restrictions_by_object_type
 

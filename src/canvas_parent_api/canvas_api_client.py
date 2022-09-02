@@ -6,13 +6,15 @@ from urllib.parse import urljoin
 
 import aiohttp
 
-from .models.base import ObserveeResponse,CourseResponse,AssignmentResponse
+from .models.base import ObserveeResponse, CourseResponse, AssignmentResponse
 
 _LOGGER = logging.getLogger(__name__)
 _LOGGER.setLevel(logging.INFO)
 
+
 def _enable_debug_logging():
     _LOGGER.setLevel(logging.DEBUG)
+
 
 class CanvasApiClient():
     """Canvas Parent API Client."""
@@ -21,7 +23,7 @@ class CanvasApiClient():
         base_url,
         api_key,
         path: str = None,
-        debug = False,
+        debug=False,
     ):
         if debug:
             _enable_debug_logging()
@@ -34,11 +36,11 @@ class CanvasApiClient():
         _LOGGER.debug(f"generated base url: {self._base_url}")
 
         self._api_key = api_key
-        self._headers = {"accept": "application/json","Authorization": f"Bearer {self._api_key}"}
+        self._headers = {"accept": "application/json", "Authorization": f"Bearer {self._api_key}"}
 
     async def _get_request(self, end_url: str):
         """Perform GET request to API endpoint."""
-        request_url = urljoin(self._base_url,end_url)
+        request_url = urljoin(self._base_url, end_url)
         async with aiohttp.ClientSession() as session:
             async with session.get(f"{request_url}", headers=self._headers) as studentresp:
                 response = studentresp
@@ -67,7 +69,7 @@ class CanvasApiClient():
         """Get Canvas Courses."""
         parsed_response = await self._get_request(
             f"users/{student_id}/courses/{course_id}/assignments?include[]=submission"
-            )
+        )
         parsed_json = json.loads(json.dumps(parsed_response))
         if parsed_response:
             return [AssignmentResponse(**resp) for resp in parsed_json]

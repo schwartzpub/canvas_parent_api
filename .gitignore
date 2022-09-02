@@ -5,3 +5,4 @@ src/canvas_parent_api/__pycache__/
 src/canvas_parent_api/models/__pycache__/
 tests/
 dist/
+.tox/.package.lock

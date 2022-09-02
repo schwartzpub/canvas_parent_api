@@ -1,6 +1,7 @@
 """Base Model Definition."""
 from typing import Optional
-from pydantic import BaseModel,Field
+from pydantic import BaseModel, Field
+
 
 class ObserveeResponse(BaseModel):
     """Observee Response Definition."""
@@ -10,6 +11,7 @@ class ObserveeResponse(BaseModel):
     sortable_name: str
     short_name: str
     observation_link_root_account: Optional[list[int]]
+
 
 class CourseResponse(BaseModel):
     """Course Response Definition."""
@@ -55,7 +57,7 @@ class CourseResponse(BaseModel):
     allow_wiki_comments: Optional[bool]
     allow_student_forum_attachments: Optional[bool]
     open_enrollment: Optional[bool]
-    self_enrollment:Optional[bool]
+    self_enrollment: Optional[bool]
     restrict_enrollments_to_course_dates: Optional[bool]
     course_format: Optional[str]
     access_restricted_by_date: Optional[bool]
@@ -64,6 +66,7 @@ class CourseResponse(BaseModel):
     blueprint_restrictions: Optional[dict]
     blueprint_restrictions_by_object_type: Optional[dict]
     template: bool
+
 
 class AssignmentResponse(BaseModel):
     """Assignment Response Definition"""

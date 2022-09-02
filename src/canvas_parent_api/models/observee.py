@@ -2,6 +2,7 @@
 from canvas_parent_api.base import DataModel
 from canvas_parent_api.canvas_api_client import ObserveeResponse
 
+
 class Observee(DataModel):
     """Observee Model Definition."""
     def __init__(self, observee_resp: ObserveeResponse):
@@ -10,7 +11,7 @@ class Observee(DataModel):
         self._created_at = observee_resp.created_at
         self._sortable_name = observee_resp.sortable_name
         self._short_name = observee_resp.short_name
-        self._observation_link_root_account= observee_resp.observation_link_root_account
+        self._observation_link_root_account = observee_resp.observation_link_root_account
 
     @property
     def id(self) -> int:

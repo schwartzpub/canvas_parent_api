@@ -5,14 +5,14 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="canvas_parent_api",
-    version="0.0.3",
+    version="0.0.4",
     author="Jacob Schwartz",
     author_email="jake@schwartzpub.com",
     description="",
     zip_safe = False,
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/sebrut/pygrocy",
+    url="https://github.com/schwartzpub/canvas_parent_api",
     license="MIT",
     packages=setuptools.find_packages(
         'src',
