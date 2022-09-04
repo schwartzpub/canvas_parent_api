@@ -59,7 +59,7 @@ class CanvasApiClient():
 
     async def get_courses(self, student_id: int) -> list[CourseResponse]:
         """Get Canvas Courses."""
-        parsed_response = await self._get_request(f"users/{student_id}/courses?include[]=term")
+        parsed_response = await self._get_request(f"users/{student_id}/courses?per_page=50")
         parsed_json = json.loads(json.dumps(parsed_response))
         if parsed_response:
             return [CourseResponse(**resp) for resp in parsed_json]
@@ -68,7 +68,7 @@ class CanvasApiClient():
     async def get_assignments(self, student_id: int, course_id: int) -> list[AssignmentResponse]:
         """Get Canvas Courses."""
         parsed_response = await self._get_request(
-            f"users/{student_id}/courses/{course_id}/assignments?include[]=submission"
+            f"users/{student_id}/courses/{course_id}/assignments?include[]=submission?per_page=50"
         )
         parsed_json = json.loads(json.dumps(parsed_response))
         if parsed_response:
