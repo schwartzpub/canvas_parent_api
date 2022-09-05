@@ -7,7 +7,6 @@ class Course(DataModel):
     """Define Course Model."""
     def __init__(self, course_resp: CourseResponse):
         self._id = course_resp.id
-
         self._name = course_resp.name
         self._course_code = course_resp.course_code
         self._original_name = course_resp.original_name

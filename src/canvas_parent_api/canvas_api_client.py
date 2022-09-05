@@ -6,7 +6,7 @@ from urllib.parse import urljoin
 
 import aiohttp
 
-from .models.base import ObserveeResponse, CourseResponse, AssignmentResponse
+from .models.base import ObserveeResponse, CourseResponse, AssignmentResponse, SubmissionResponse
 
 _LOGGER = logging.getLogger(__name__)
 _LOGGER.setLevel(logging.INFO)
@@ -73,4 +73,14 @@ class CanvasApiClient():
         parsed_json = json.loads(json.dumps(parsed_response))
         if parsed_response:
             return [AssignmentResponse(**resp) for resp in parsed_json]
+        return []
+
+    async def get_submissions(self, student_id: int, course_id: int) -> list[SubmissionResponse]:
+        """Get Canvas Courses."""
+        parsed_response = await self._get_request(
+            f"courses/{course_id}/students/submissions?student_ids[]={student_id}&per_page=50"
+        )
+        parsed_json = json.loads(json.dumps(parsed_response))
+        if parsed_response:
+            return [SubmissionResponse(**resp) for resp in parsed_json]
         return []

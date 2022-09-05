@@ -102,3 +102,29 @@ class AssignmentResponse(BaseModel):
     rubric: Optional[list]
     can_submit: Optional[bool]
     important_dates: Optional[bool]
+
+class SubmissionResponse(BaseModel):
+    """Submission Response Definition"""
+    class Config:
+        exclude = ['assignment', 'course',
+        'html_url', 'preview_url',
+        'submission_type', 'url',
+        'user_id', 'grader_id',
+        'user', 'assignment_visible',
+        'extra_attempts', 'anonymous_id',
+        'posted_at', 'read_status',
+        'redo_request']
+    assignment_id: int
+    attempt: Optional[int]
+    body: Optional[str]
+    grade: Optional[str]
+    grade_matches_current_submission: bool
+    score: Optional[float]
+    submission_comments: Optional[str]
+    submitted_at: Optional[str]
+    late: bool
+    excused: Optional[bool]
+    missing: bool
+    late_policy_status: Optional[str]
+    points_deducted: Optional[float]
+    workflow_state: str

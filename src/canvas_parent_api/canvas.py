@@ -1,6 +1,8 @@
 """Base Canvas Class."""
 import logging
 
+from canvas_parent_api.models.submission import Submission
+
 from .models.observee import Observee
 from .models.course import Course
 from .models.assignment import Assignment
@@ -41,3 +43,9 @@ class Canvas():
         assignmentsresp = await self._api_client.get_assignments(student_id, course_id)
         assignments = [Assignment(response) for response in assignmentsresp]
         return assignments
+
+    async def submissions(self, student_id, course_id) -> list[Submission]:
+        """Get Submissions: must supply student id and course id."""
+        submissionsresp = await self._api_client.get_submissions(student_id, course_id)
+        submissions = [Submission(response) for response in submissionsresp]
+        return submissions

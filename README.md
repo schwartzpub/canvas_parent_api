@@ -5,6 +5,7 @@ The types of objects that can be returned include:
  - Observees (Students)
  - Courses
  - Assignments
+ - Submissions
 
 This module is provided for use with the Home Assistant custom integration [Canvas](https://github.com/schwartzpub/canvas_hassio) however it could be useful as a standalone module for your own projects as well.
 
@@ -43,3 +44,8 @@ students = asyncio.run(get_students())
 for student in students:
 	print(student.name)
 ```
+
+### Patch Notes
+
+ - 0.0.9:
+	- Added Submissions
