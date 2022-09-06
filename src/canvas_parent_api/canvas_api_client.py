@@ -6,6 +6,8 @@ from urllib.parse import urljoin
 
 import aiohttp
 
+from canvas_parent_api.errors.canvas_error import CanvasError
+
 from .models.base import ObserveeResponse, CourseResponse, AssignmentResponse, SubmissionResponse
 
 _LOGGER = logging.getLogger(__name__)
@@ -42,11 +44,12 @@ class CanvasApiClient():
         """Perform GET request to API endpoint."""
         request_url = urljoin(self._base_url, end_url)
         async with aiohttp.ClientSession() as session:
-            async with session.get(f"{request_url}", headers=self._headers) as studentresp:
-                response = studentresp
-                response_json = await studentresp.json()
+            async with session.get(f"{request_url}", headers=self._headers) as resp:
+                response = resp
+                responsetext = await resp.text()
+                response_json = await resp.json()
                 if response.status >= 400:
-                    return response
+                    raise CanvasError(response.status, responsetext)
                 return response_json
 
     async def get_observees(self) -> list[ObserveeResponse]:
