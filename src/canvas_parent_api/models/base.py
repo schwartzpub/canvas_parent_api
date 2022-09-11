@@ -17,20 +17,20 @@ class CourseResponse(BaseModel):
     """Course Response Definition."""
     class Config:
         exclude = ['sis_course_id', 'uuid',
-        'integration_id', 'sis_import_id',
-        'workflow_state', 'account_id',
-        'root_account_id', 'grade_passback_setting',
-        'locale', 'total_students',
-        'default_view', 'needs_grading_count',
-        'apply_assignment_group_weights', 'permissions',
-        'is_public', 'is_public_to_auth_users',
-        'public_syllabus_to_auth', 'storage_quota_mb',
-        'storage_quota_used_mb', 'hide_final_grades',
-        'license', 'allow_student_assignment_edits',
-        'allow_wiki_comments', 'allow_student_forum_attachments',
-        'restrict_enrollments_to_course_dates', 'access_restricted_by_date',
-        'blueprint', 'blueprint_restrictions',
-        'blueprint_restrictions_by_object_type', 'template']
+                   'integration_id', 'sis_import_id',
+                   'workflow_state', 'account_id',
+                   'root_account_id', 'grade_passback_setting',
+                   'locale', 'total_students',
+                   'default_view', 'needs_grading_count',
+                   'apply_assignment_group_weights', 'permissions',
+                   'is_public', 'is_public_to_auth_users',
+                   'public_syllabus_to_auth', 'storage_quota_mb',
+                   'storage_quota_used_mb', 'hide_final_grades',
+                   'license', 'allow_student_assignment_edits',
+                   'allow_wiki_comments', 'allow_student_forum_attachments',
+                   'restrict_enrollments_to_course_dates', 'access_restricted_by_date',
+                   'blueprint', 'blueprint_restrictions',
+                   'blueprint_restrictions_by_object_type', 'template']
     id: int
     name: str
     course_code: str
@@ -58,33 +58,33 @@ class AssignmentResponse(BaseModel):
     """Assignment Response Definition"""
     class Config:
         exclude = ['has_overrides', 'all_dates',
-        'html_url', 'submission_download_url',
-        'assignment_group_id', 'due_date_required',
-        'allowed_extensions', 'max_name_length',
-        'turnitin_enabled', 'vericite_enabled',
-        'turnitin_settings', 'grade_group_students_individually',
-        'external_tool_tag_attributes', 'peer_reviews',
-        'autoamtic_peer_reviews', 'peer_review_count', 
-        'peer_reviews_assign_at', 'intra_group_peer_reviews',
-        'group_category_id', 'needs_grading_count',
-        'needs_grading_count_by_section', 'position',
-        'post_to_sis', 'integration_id',
-        'integration_data', 'submission_types',
-        'grading_type', 'grading_standard_id',
-        'published', 'unpublishable',
-        'only_visible_to_overrides', 'locked_for_user',
-        'locked_info', 'lock_explanation',
-        'anonymous_submissions', 'freeze_on_copy',
-        'frozen', 'frozen_attributes',
-        'use_rubric_for_grading', 'rubric_settings',
-        'assignment_visibility', 'overrides',
-        'omit_from_final_grade', 'moderated_grading',
-        'grader_count', 'final_grader_id',
-        'grader_comments_visible_to_graders',
-        'graders_anonymous_to_graders', 'anonymous_grading',
-        'post_manually', 'score_statistics',
-        'annotatable_attachment_id', 'anonymize_students',
-        'require_lockdown_browser', 'muted']
+                   'html_url', 'submission_download_url',
+                   'assignment_group_id', 'due_date_required',
+                   'allowed_extensions', 'max_name_length',
+                   'turnitin_enabled', 'vericite_enabled',
+                   'turnitin_settings', 'grade_group_students_individually',
+                   'external_tool_tag_attributes', 'peer_reviews',
+                   'autoamtic_peer_reviews', 'peer_review_count',
+                   'peer_reviews_assign_at', 'intra_group_peer_reviews',
+                   'group_category_id', 'needs_grading_count',
+                   'needs_grading_count_by_section', 'position',
+                   'post_to_sis', 'integration_id',
+                   'integration_data', 'submission_types',
+                   'grading_type', 'grading_standard_id',
+                   'published', 'unpublishable',
+                   'only_visible_to_overrides', 'locked_for_user',
+                   'locked_info', 'lock_explanation',
+                   'anonymous_submissions', 'freeze_on_copy',
+                   'frozen', 'frozen_attributes',
+                   'use_rubric_for_grading', 'rubric_settings',
+                   'assignment_visibility', 'overrides',
+                   'omit_from_final_grade', 'moderated_grading',
+                   'grader_count', 'final_grader_id',
+                   'grader_comments_visible_to_graders',
+                   'graders_anonymous_to_graders', 'anonymous_grading',
+                   'post_manually', 'score_statistics',
+                   'annotatable_attachment_id', 'anonymize_students',
+                   'require_lockdown_browser', 'muted']
     id: int
     name: str
     description: Optional[str] = Field(...)
@@ -103,17 +103,18 @@ class AssignmentResponse(BaseModel):
     can_submit: Optional[bool]
     important_dates: Optional[bool]
 
+
 class SubmissionResponse(BaseModel):
     """Submission Response Definition"""
     class Config:
         exclude = ['assignment', 'course',
-        'html_url', 'preview_url',
-        'submission_type', 'url',
-        'user_id', 'grader_id',
-        'user', 'assignment_visible',
-        'extra_attempts', 'anonymous_id',
-        'posted_at', 'read_status',
-        'redo_request']
+                   'html_url', 'preview_url',
+                   'submission_type', 'url',
+                   'user_id', 'grader_id',
+                   'user', 'assignment_visible',
+                   'extra_attempts', 'anonymous_id',
+                   'posted_at', 'read_status',
+                   'redo_request']
     assignment_id: int
     attempt: Optional[int]
     body: Optional[str]

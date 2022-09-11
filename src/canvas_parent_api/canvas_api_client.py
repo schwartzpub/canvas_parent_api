@@ -5,6 +5,7 @@ import logging
 from urllib.parse import urljoin
 
 import aiohttp
+from multidict import MultiDict
 
 from canvas_parent_api.errors.canvas_error import CanvasError
 
@@ -47,43 +48,58 @@ class CanvasApiClient():
             async with session.get(f"{request_url}", headers=self._headers) as resp:
                 response = resp
                 responsetext = await resp.text()
-                response_json = await resp.json()
                 if response.status >= 400:
                     raise CanvasError(response.status, responsetext)
-                return response_json
+                return response
 
     async def get_observees(self) -> list[ObserveeResponse]:
         """Get Canvas Observees (students)."""
-        parsed_response = await self._get_request("users/self/observees")
-        parsed_json = json.loads(json.dumps(parsed_response))
-        if parsed_response:
+        response = await self._get_request("users/self/observees")
+        parsed_json = await response.json()
+        next = MultiDict(response.links.get('next', ''))
+        if next:
+            nextpage = await self._get_request(str(next.get('url')).replace(self._base_url, ''))
+            parsed_json.extend(await nextpage.json())
+        if response:
             return [ObserveeResponse(**resp) for resp in parsed_json]
         return []
 
     async def get_courses(self, student_id: int) -> list[CourseResponse]:
         """Get Canvas Courses."""
-        parsed_response = await self._get_request(f"users/{student_id}/courses?include[]=term&per_page=50")
-        parsed_json = json.loads(json.dumps(parsed_response))
-        if parsed_response:
+        response = await self._get_request(f"users/{student_id}/courses?include[]=term&per_page=50")
+        parsed_json = await response.json()
+        next = MultiDict(response.links.get('next', ''))
+        if next:
+            nextpage = await self._get_request(str(next.get('url')).replace(self._base_url, ''))
+            parsed_json.extend(await nextpage.json())
+        if response:
             return [CourseResponse(**resp) for resp in parsed_json]
         return []
 
     async def get_assignments(self, student_id: int, course_id: int) -> list[AssignmentResponse]:
         """Get Canvas Courses."""
-        parsed_response = await self._get_request(
+        response = await self._get_request(
             f"users/{student_id}/courses/{course_id}/assignments?include[]=submission&per_page=50"
         )
-        parsed_json = json.loads(json.dumps(parsed_response))
-        if parsed_response:
+        parsed_json = await response.json()
+        next = MultiDict(response.links.get('next', ''))
+        if next:
+            nextpage = await self._get_request(str(next.get('url')).replace(self._base_url, ''))
+            parsed_json.extend(await nextpage.json())
+        if response:
             return [AssignmentResponse(**resp) for resp in parsed_json]
         return []
 
     async def get_submissions(self, student_id: int, course_id: int) -> list[SubmissionResponse]:
         """Get Canvas Courses."""
-        parsed_response = await self._get_request(
+        response = await self._get_request(
             f"courses/{course_id}/students/submissions?student_ids[]={student_id}&per_page=50"
         )
-        parsed_json = json.loads(json.dumps(parsed_response))
-        if parsed_response:
+        parsed_json = await response.json()
+        next = MultiDict(response.links.get('next', ''))
+        if next:
+            nextpage = await self._get_request(str(next.get('url')).replace(self._base_url, ''))
+            parsed_json.extend(await nextpage.json())
+        if response:
             return [SubmissionResponse(**resp) for resp in parsed_json]
         return []

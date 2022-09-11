@@ -47,5 +47,8 @@ for student in students:
 
 ### Patch Notes
 
+ - 0.0.12:
+    - Added pagination support to automatically paginate to end of available requests
+
  - 0.0.9:
 	- Added Submissions
