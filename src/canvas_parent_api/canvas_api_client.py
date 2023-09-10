@@ -66,7 +66,7 @@ class CanvasApiClient():
 
     async def get_courses(self, student_id: int) -> list[CourseResponse]:
         """Get Canvas Courses."""
-        response = await self._get_request(f"users/{student_id}/courses?include[]=term&per_page=50")
+        response = await self._get_request(f"users/{student_id}/courses?include[]=term&include[]=current_grading_period_scores&include[]=total_scores&per_page=50")
         parsed_json = await response.json()
         next = MultiDict(response.links.get('next', ''))
         if next:

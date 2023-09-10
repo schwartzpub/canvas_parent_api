@@ -32,26 +32,26 @@ class CourseResponse(BaseModel):
                    'blueprint', 'blueprint_restrictions',
                    'blueprint_restrictions_by_object_type', 'template']
     id: int
-    name: str
-    course_code: str
+    name: Optional[str]
+    course_code: Optional[str]
     original_name: Optional[str]
-    enrollment_term_id: int
+    enrollment_term_id: Optional[int]
     grading_periods: Optional[list]
-    grading_standard_id: Optional[int] = Field(...)
-    created_at: str
-    start_at: Optional[str] = Field(...)
-    end_at: Optional[str] = Field(...)
+    grading_standard_id: Optional[int] = Field(None)
+    created_at: Optional[str]
+    start_at: Optional[str] = Field(None)
+    end_at: Optional[str] = Field(None)
     enrollments: Optional[list]
     calendar: Optional[dict]
     syllabus_body: Optional[str]
     term: Optional[dict]
     course_progress: Optional[int]
-    public_syllabus: bool
+    public_syllabus: Optional[bool]
     public_description: Optional[str]
     open_enrollment: Optional[bool]
     self_enrollment: Optional[bool]
     course_format: Optional[str]
-    time_zone: str
+    time_zone: Optional[str]
 
 
 class AssignmentResponse(BaseModel):
@@ -86,16 +86,16 @@ class AssignmentResponse(BaseModel):
                    'annotatable_attachment_id', 'anonymize_students',
                    'require_lockdown_browser', 'muted']
     id: int
-    name: str
-    description: Optional[str] = Field(...)
-    created_at: str
-    updated_at: str
+    name: Optional[str]
+    description: Optional[str] = Field(None)
+    created_at: Optional[str]
+    updated_at: Optional[str]
     due_at: Optional[str]
     lock_at: Optional[str]
     unlock_at: Optional[str]
-    course_id: int
+    course_id: Optional[int]
     points_possible: Optional[float]
-    has_submitted_submissions: bool
+    has_submitted_submissions: Optional[bool]
     quiz_id: Optional[int]
     discussion_topic: Optional[dict]
     submission: Optional[dict]
@@ -119,13 +119,13 @@ class SubmissionResponse(BaseModel):
     attempt: Optional[int]
     body: Optional[str]
     grade: Optional[str]
-    grade_matches_current_submission: bool
+    grade_matches_current_submission: Optional[bool]
     score: Optional[float]
     submission_comments: Optional[str]
     submitted_at: Optional[str]
-    late: bool
+    late: Optional[bool]
     excused: Optional[bool]
-    missing: bool
+    missing: Optional[bool]
     late_policy_status: Optional[str]
     points_deducted: Optional[float]
-    workflow_state: str
+    workflow_state: Optional[str]

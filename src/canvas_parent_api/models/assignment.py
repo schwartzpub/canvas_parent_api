@@ -1,4 +1,5 @@
 """Assignment Model Definition."""
+from typing import Optional
 from canvas_parent_api.base import DataModel
 from canvas_parent_api.canvas_api_client import AssignmentResponse
 
@@ -30,81 +31,81 @@ class Assignment(DataModel):
         return self._id
 
     @property
-    def name(self) -> str:
+    def name(self) -> Optional[str]:
         """Property Definition."""
         return self._name
 
     @property
-    def description(self) -> str:
+    def description(self) -> Optional[str]:
         """Property Definition."""
         return self._description
 
     @property
-    def created_at(self) -> str:
+    def created_at(self) -> Optional[str]:
         """Property Definition."""
         return self._created_at
 
     @property
-    def updated_at(self) -> str:
+    def updated_at(self) -> Optional[str]:
         """Property Definition."""
         return self._updated_at
 
     @property
-    def due_at(self) -> str:
+    def due_at(self) -> Optional[str]:
         """Property Definition."""
         return self._due_at
 
     @property
-    def lock_at(self) -> str:
+    def lock_at(self) -> Optional[str]:
         """Property Definition."""
         return self._lock_at
 
     @property
-    def unlock_at(self) -> str:
+    def unlock_at(self) -> Optional[str]:
         """Property Definition."""
         return self._unlock_at
 
     @property
-    def course_id(self) -> int:
+    def course_id(self) -> Optional[int]:
         """Property Definition."""
         return self._course_id
 
     @property
-    def points_possible(self) -> float:
+    def points_possible(self) -> Optional[float]:
         """Property Definition."""
         return self._points_possible
 
     @property
-    def has_submitted_submissions(self) -> bool:
+    def has_submitted_submissions(self) -> Optional[bool]:
         """Property Definition."""
         return self._has_submitted_submissions
 
     @property
-    def quiz_id(self) -> int:
+    def quiz_id(self) -> Optional[int]:
         """Property Definition."""
         return self._quiz_id
 
     @property
-    def discussion_topic(self) -> dict:
+    def discussion_topic(self) -> Optional[dict]:
         """Property Definition."""
         return self._discussion_topic
 
     @property
-    def submission(self) -> dict:
+    def submission(self) -> Optional[dict]:
         """Property Definition."""
         return self._submission
 
     @property
-    def rubric(self) -> list:
+    def rubric(self) -> Optional[list]:
         """Property Definition."""
         return self._rubric
 
     @property
-    def can_submit(self) -> bool:
+    def can_submit(self) -> Optional[bool]:
         """Property Definition."""
         return self._can_submit
 
     @property
-    def important_dates(self) -> bool:
+    def important_dates(self) -> Optional[bool]:
         """Property Definition."""
         return self._important_dates
