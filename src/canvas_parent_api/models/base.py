@@ -36,12 +36,12 @@ class CourseResponse(BaseModel):
     course_code: Optional[str]
     original_name: Optional[str]
     enrollment_term_id: Optional[int]
-    grading_periods: Optional[list]
+    grading_periods: Optional[list] = Field([None])
     grading_standard_id: Optional[int] = Field(None)
     created_at: Optional[str]
     start_at: Optional[str] = Field(None)
     end_at: Optional[str] = Field(None)
-    enrollments: Optional[list]
+    enrollments: Optional[list] = Field([None])
     calendar: Optional[dict]
     syllabus_body: Optional[str]
     term: Optional[dict]
@@ -99,7 +99,7 @@ class AssignmentResponse(BaseModel):
     quiz_id: Optional[int]
     discussion_topic: Optional[dict]
     submission: Optional[dict]
-    rubric: Optional[list]
+    rubric: Optional[list] = Field([None])
     can_submit: Optional[bool]
     important_dates: Optional[bool]
 

@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="canvas_parent_api",
-    version="0.0.14",
+    version="0.0.15",
     author="Jacob Schwartz",
     author_email="jake@schwartzpub.com",
     description="",
