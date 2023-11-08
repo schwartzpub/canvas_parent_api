@@ -11,7 +11,7 @@ class Observee(DataModel):
         self._created_at = observee_resp.created_at
         self._sortable_name = observee_resp.sortable_name
         self._short_name = observee_resp.short_name
-        self._observation_link_root_account = observee_resp.observation_link_root_account
+        self._observation_link_root_account_ids = observee_resp.observation_link_root_account_ids
 
     @property
     def id(self) -> int:
@@ -39,6 +39,6 @@ class Observee(DataModel):
         return self._short_name
 
     @property
-    def observation_link_root_account(self) -> list[int]:
+    def observation_link_root_account_ids(self) -> list[int]:
         """Property Definition."""
-        return self._observation_link_root_account
+        return self._observation_link_root_account_ids

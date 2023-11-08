@@ -10,7 +10,7 @@ class ObserveeResponse(BaseModel):
     created_at: str
     sortable_name: str
     short_name: str
-    observation_link_root_account: Optional[list[int]]
+    observation_link_root_account_ids: Optional[list[int]]
 
 
 class CourseResponse(BaseModel):
