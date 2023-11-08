@@ -12,7 +12,6 @@ class Submission(DataModel):
         self._grade = submission_resp.grade
         self._grade_matches_current_submission = submission_resp.grade_matches_current_submission
         self._score = submission_resp.score
-        self._submission_comments = submission_resp.submission_comments
         self._submitted_at = submission_resp.submitted_at
         self._late = submission_resp.late
         self._excused = submission_resp.excused
@@ -20,6 +19,8 @@ class Submission(DataModel):
         self._late_policy_status = submission_resp.late_policy_status
         self._points_deducted = submission_resp.points_deducted
         self._workflow_state = submission_resp.workflow_state
+        self._seconds_late = submission_resp.seconds_late
+        self._preview_url = submission_resp.preview_url
 
     @property
     def assignment_id(self) -> int:
@@ -50,11 +51,6 @@ class Submission(DataModel):
     def score(self) -> float:
         """Property Definition."""
         return self._score
-
-    @property
-    def submission_comments(self) -> str:
-        """Property Definition."""
-        return self._submission_comments
 
     @property
     def submitted_at(self) -> str:
@@ -90,3 +86,13 @@ class Submission(DataModel):
     def workflow_state(self) -> str:
         """Property Definition."""
         return self._workflow_state
+
+    @property
+    def seconds_late(self) -> int:
+        """Property Definition"""
+        return self._seconds_late
+
+    @property
+    def preview_url(self) -> str:
+        """Property Definition"""
+        return self._preview_url

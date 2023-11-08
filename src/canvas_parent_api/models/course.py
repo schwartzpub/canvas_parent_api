@@ -8,24 +8,19 @@ class Course(DataModel):
     def __init__(self, course_resp: CourseResponse):
         self._id = course_resp.id
         self._name = course_resp.name
+        self._score = course_resp.enrollments[0]['computed_current_score']
+        self._grade = self._compute_letter_grade()
         self._course_code = course_resp.course_code
-        self._original_name = course_resp.original_name
         self._enrollment_term_id = course_resp.enrollment_term_id
-        self._grading_periods = course_resp.grading_periods
         self._grading_standard_id = course_resp.grading_standard_id
-        self._created_at = course_resp.created_at
-        self._start_at = course_resp.start_at
-        self._end_at = course_resp.end_at
+        self._created_at = course_resp.term['created_at']
+        self._start_at = course_resp.term['start_at']
+        self._end_at = course_resp.term['end_at']
         self._enrollments = course_resp.enrollments
         self._calendar = course_resp.calendar
-        self._syllabus_body = course_resp.syllabus_body
         self._term = course_resp.term
         self._course_progress = course_resp.course_progress
         self._public_syllabus = course_resp.public_syllabus
-        self._public_description = course_resp.public_description
-        self._open_enrollment = course_resp.open_enrollment
-        self._self_enrollment = course_resp.self_enrollment
-        self._course_format = course_resp.course_format
         self._time_zone = course_resp.time_zone
 
     @property
@@ -39,24 +34,24 @@ class Course(DataModel):
         return self._name
 
     @property
+    def score(self) -> str:
+        """Property Definition."""
+        return self._score
+
+    @property
+    def grade(self) -> str:
+        """Property Definition."""
+        return self._grade
+
+    @property
     def course_code(self) -> str:
         """Property Definition."""
         return self._course_code
 
     @property
-    def original_name(self) -> str:
-        """Property Definition."""
-        return self._original_name
-
-    @property
     def enrollment_term_id(self) -> int:
         """Property Definition."""
         return self._enrollment_term_id
-
-    @property
-    def grading_periods(self) -> list[int]:
-        """Property Definition."""
-        return self._grading_periods
 
     @property
     def grading_standard_id(self) -> int:
@@ -89,18 +84,13 @@ class Course(DataModel):
         return self._calendar
 
     @property
-    def syllabus_body(self) -> str:
-        """Property Definition."""
-        return self._syllabus_body
-
-    @property
     def term(self) -> dict:
         """Property Definition."""
         return self._term
 
     @property
-    def course_progress(self) -> int:
-        """Property Definition."""
+    def course_progress(self):
+        """Property Definition"""
         return self._course_progress
 
     @property
@@ -109,26 +99,18 @@ class Course(DataModel):
         return self._public_syllabus
 
     @property
-    def public_description(self) -> str:
-        """Property Definition."""
-        return self._public_description
-
-    @property
-    def open_enrollment(self) -> bool:
-        """Property Definition."""
-        return self._open_enrollment
-
-    @property
-    def self_enrollment(self) -> bool:
-        """Property Definition."""
-        return self._self_enrollment
-
-    @property
-    def course_format(self) -> str:
-        """Property Definition."""
-        return self._course_format
-
-    @property
     def time_zone(self) -> str:
         """Property Definition."""
         return self._time_zone
+
+    def _compute_letter_grade(self) -> str:
+        grades = {
+            93: 'A+', 97: 'A', 90: 'A-',
+            87: 'B+', 83: 'B', 80: 'B-',
+            77: 'C+', 73: 'C', 70: 'C-',
+            67: 'D+', 63: 'D', 60: 'D-'
+        }
+        for score, letter in grades.items():
+            if self.score >= score:
+                return letter
+        return 'F'

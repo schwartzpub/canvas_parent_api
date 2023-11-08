@@ -18,11 +18,9 @@ class Assignment(DataModel):
         self._course_id = assignment_resp.course_id
         self._points_possible = assignment_resp.points_possible
         self._has_submitted_submissions = assignment_resp.has_submitted_submissions
-        self._quiz_id = assignment_resp.quiz_id
-        self._discussion_topic = assignment_resp.discussion_topic
+        self._assignment_url = assignment_resp.html_url
         self._submission = assignment_resp.submission
-        self._rubric = assignment_resp.rubric
-        self._can_submit = assignment_resp.can_submit
+        self._submission_download_url = assignment_resp.submission_download_url
         self._important_dates = assignment_resp.important_dates
 
     @property
@@ -81,14 +79,9 @@ class Assignment(DataModel):
         return self._has_submitted_submissions
 
     @property
-    def quiz_id(self) -> Optional[int]:
-        """Property Definition."""
-        return self._quiz_id
-
-    @property
-    def discussion_topic(self) -> Optional[dict]:
-        """Property Definition."""
-        return self._discussion_topic
+    def assignment_url(self) -> Optional[str]:
+        """Property Definition"""
+        return self._assignment_url
 
     @property
     def submission(self) -> Optional[dict]:
@@ -96,14 +89,9 @@ class Assignment(DataModel):
         return self._submission
 
     @property
-    def rubric(self) -> Optional[list]:
-        """Property Definition."""
-        return self._rubric
-
-    @property
-    def can_submit(self) -> Optional[bool]:
-        """Property Definition."""
-        return self._can_submit
+    def submissions_download_url(self) -> Optional[str]:
+        """Property Definition"""
+        return self._submission_download_url
 
     @property
     def important_dates(self) -> Optional[bool]:

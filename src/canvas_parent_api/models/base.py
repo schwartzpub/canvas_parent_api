@@ -34,23 +34,16 @@ class CourseResponse(BaseModel):
     id: int
     name: Optional[str]
     course_code: Optional[str]
-    original_name: Optional[str]
     enrollment_term_id: Optional[int]
-    grading_periods: Optional[list] = Field([None])
     grading_standard_id: Optional[int] = Field(None)
     created_at: Optional[str]
     start_at: Optional[str] = Field(None)
     end_at: Optional[str] = Field(None)
     enrollments: Optional[list] = Field([None])
     calendar: Optional[dict]
-    syllabus_body: Optional[str]
     term: Optional[dict]
-    course_progress: Optional[int]
+    course_progress: Optional[dict]
     public_syllabus: Optional[bool]
-    public_description: Optional[str]
-    open_enrollment: Optional[bool]
-    self_enrollment: Optional[bool]
-    course_format: Optional[str]
     time_zone: Optional[str]
 
 
@@ -96,11 +89,9 @@ class AssignmentResponse(BaseModel):
     course_id: Optional[int]
     points_possible: Optional[float]
     has_submitted_submissions: Optional[bool]
-    quiz_id: Optional[int]
-    discussion_topic: Optional[dict]
-    submission: Optional[dict]
-    rubric: Optional[list] = Field([None])
-    can_submit: Optional[bool]
+    html_url: Optional[str]
+    submission: Optional[list]
+    submission_download_url: Optional[str]
     important_dates: Optional[bool]
 
 
@@ -108,9 +99,8 @@ class SubmissionResponse(BaseModel):
     """Submission Response Definition"""
     class Config:
         exclude = ['assignment', 'course',
-                   'html_url', 'preview_url',
-                   'submission_type', 'url',
-                   'user_id', 'grader_id',
+                   'html_url', 'submission_type',
+                   'url', 'user_id', 'grader_id',
                    'user', 'assignment_visible',
                    'extra_attempts', 'anonymous_id',
                    'posted_at', 'read_status',
@@ -121,7 +111,6 @@ class SubmissionResponse(BaseModel):
     grade: Optional[str]
     grade_matches_current_submission: Optional[bool]
     score: Optional[float]
-    submission_comments: Optional[str]
     submitted_at: Optional[str]
     late: Optional[bool]
     excused: Optional[bool]
@@ -129,3 +118,5 @@ class SubmissionResponse(BaseModel):
     late_policy_status: Optional[str]
     points_deducted: Optional[float]
     workflow_state: Optional[str]
+    seconds_late: Optional[int]
+    preview_url: Optional[str]
