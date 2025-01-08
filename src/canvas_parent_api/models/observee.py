@@ -1,7 +1,7 @@
 """Observee Model Definition."""
 from canvas_parent_api.base import DataModel
 from canvas_parent_api.canvas_api_client import ObserveeResponse
-
+from typing import Optional
 
 class Observee(DataModel):
     """Observee Model Definition."""
@@ -39,6 +39,6 @@ class Observee(DataModel):
         return self._short_name
 
     @property
-    def observation_link_root_account(self) -> list[int]:
+    def observation_link_root_account(self) -> Optional[list[int]]:
         """Property Definition."""
         return self._observation_link_root_account

@@ -1,7 +1,7 @@
 """Course Model Definition."""
 from canvas_parent_api.base import DataModel
 from canvas_parent_api.canvas_api_client import CourseResponse
-
+from typing import Optional
 
 class Course(DataModel):
     """Define Course Model."""

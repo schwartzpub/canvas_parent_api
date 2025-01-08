@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="canvas_parent_api",
-    version="0.0.15",
+    version="0.0.23",
     author="Jacob Schwartz",
     author_email="jake@schwartzpub.com",
     description="",
@@ -21,7 +21,7 @@ setuptools.setup(
     package_dir={'':'src'},
     install_requires=[
         "aiohttp",
-        "pydantic>=1.8.2,<1.10.0",
+        "pydantic"
     ],
     classifiers=[
         "Programming Language :: Python :: 3",
